@@ -72,14 +72,13 @@ def register_screen():
     win = tk.Tk()
     win.title("Register - Railway Booking")
     win.geometry("400x400")
-    win.resizable(False, False)
+    win.resizable(True, True)  # Allow window resizing
     set_background(win, "train_bg.png")
 
     frame = tk.Frame(win, bg=COLORS["card"], padx=20, pady=20)
     frame.place(relx=0.5, rely=0.5, anchor="center")
 
     tk.Label(frame, text="📝 Register", font=FONTS["header"], fg=COLORS["text"], bg=COLORS["card"]).pack(pady=10)
-
     tk.Label(frame, text="Username", font=FONTS["text"], bg=COLORS["card"]).pack()
     username = tk.Entry(frame, font=FONTS["text"])
     username.pack(pady=5)
@@ -111,14 +110,13 @@ def login_screen():
     win = tk.Tk()
     win.title("Login - Railway Booking")
     win.geometry("400x400")
-    win.resizable(False, False)
+    win.resizable(True, True)  # Allow window resizing
     set_background(win, "train_bg.png")
 
     frame = tk.Frame(win, bg=COLORS["card"], padx=20, pady=20)
     frame.place(relx=0.5, rely=0.5, anchor="center")
 
     tk.Label(frame, text="🚆 Login", font=FONTS["header"], fg=COLORS["text"], bg=COLORS["card"]).pack(pady=10)
-
     tk.Label(frame, text="Username", font=FONTS["text"], bg=COLORS["card"]).pack()
     username = tk.Entry(frame, font=FONTS["text"])
     username.pack(pady=5)
@@ -149,13 +147,14 @@ def dashboard(username):
     win.resizable(True, True)
     set_background(win, "train_bg.png")
 
-    tk.Label(win, text=f"Welcome, {username} 🚉", font=FONTS["header"],
-             bg=COLORS["text"], fg="white", pady=10).pack(fill="x")
+    header = tk.Label(win, text=f"Welcome, {username} 🚉", font=FONTS["header"],
+                      bg=COLORS["text"], fg="white", pady=10)
+    header.pack(fill="x")
 
     selected = tk.StringVar(value="")
 
     list_frame = tk.Frame(win, bg=COLORS["card"], padx=20, pady=10)
-    list_frame.pack(pady=20)
+    list_frame.pack(pady=20, fill="both", expand=True)
 
     tk.Label(list_frame, text="Select a Train:", font=FONTS["text"],
              bg=COLORS["card"], fg=COLORS["text"]).pack(pady=5)
@@ -201,7 +200,7 @@ def dashboard(username):
         styled_button(top, "Cancel", do_cancel).pack(pady=10)
 
     btn_frame = tk.Frame(win, bg=COLORS["card"], padx=20, pady=20)
-    btn_frame.pack(pady=10)
+    btn_frame.pack(pady=10, fill="both", expand=True)
 
     styled_button(btn_frame, "🎟️ Book Ticket", book_ticket).pack(pady=5, fill="x")
     styled_button(btn_frame, "📋 View Bookings", view_bookings).pack(pady=5, fill="x")
